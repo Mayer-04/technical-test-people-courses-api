@@ -8,6 +8,7 @@ API REST desarrollada como prueba técnica para gestionar personas y cursos. Con
 - **TypeScript** - Tipado estático
 - **Express 5** - Framework web
 - **MongoDB + Mongoose** - Base de datos NoSQL
+- **Pino** - Logger de alto rendimiento
 - **Biome** - Linter y formatter
 - **Vitest** - Testing
 - **pnpm** - Gestor de paquetes
@@ -45,7 +46,14 @@ cp .env.example .env
 ```env
 PORT=8000
 MONGO_URI=mongodb://localhost:27017/tu_base_de_datos
+
+# Entorno y logs
+NODE_ENV=development
+LOG_LEVEL=info
 ```
+
+> [!IMPORTANT]
+> `MONGO_URI` es obligatoria. La aplicación no iniciará si no está definida o está vacía.
 
 > Si usas MongoDB Atlas, coloca la URI de conexión que te proporciona el servicio.
 
