@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { ENV_VARS } from "./config.js";
+import { logger } from "./logger.js";
 
 class MongoConnection {
   private static instance: MongoConnection;
@@ -23,9 +25,9 @@ class MongoConnection {
         maxPoolSize: 10,
       });
 
-      console.log("MongoDB connection established");
+      logger.info("MongoDB connection established");
     } catch (error) {
-      console.error("MongoDB initial connection error");
+      logger.error("MongoDB initial connection error");
       throw error;
     }
   }
@@ -34,35 +36,35 @@ class MongoConnection {
     const connection = mongoose.connection;
 
     connection.on("connecting", () => {
-      console.log("MongoDB connecting...");
+      logger.info("MongoDB connecting...");
     });
 
     connection.on("connected", () => {
-      console.log("MongoDB connected");
+      logger.info("Mongoose connected to DB");
     });
 
     connection.on("open", () => {
-      console.log("MongoDB connection opened");
+      logger.info("MongoDB connection opened");
     });
 
     connection.on("reconnected", () => {
-      console.log("MongoDB reconnected");
+      logger.info("MongoDB reconnected");
     });
 
     connection.on("disconnecting", () => {
-      console.log("MongoDB disconnecting...");
+      logger.info("MongoDB disconnecting...");
     });
 
     connection.on("disconnected", () => {
-      console.warn("MongoDB disconnected");
+      logger.warn("Mongoose disconnected");
     });
 
     connection.on("close", () => {
-      console.log("MongoDB connection closed");
+      logger.info("MongoDB connection closed");
     });
 
     connection.on("error", (error) => {
-      console.error("MongoDB connection error:", error);
+      logger.error("MongoDB connection error:", error);
     });
   }
 
@@ -71,4 +73,9 @@ class MongoConnection {
   }
 }
 
-export { MongoConnection };
+const connectDB = async () => {
+  const mongo = MongoConnection.getInstance(ENV_VARS.mongoUri);
+  await mongo.connect();
+};
+
+export { MongoConnection, connectDB };
