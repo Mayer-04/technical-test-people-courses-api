@@ -1,14 +1,15 @@
 import express from "express";
-import morgan from "morgan";
+import { pinoHttp } from "pino-http";
 import { courseRoutes } from "./modules/courses/course.routes.js";
 import { peopleRoutes } from "./modules/people/people.routes.js";
+import { logger } from "./shared/logger.js";
 import { errorHandler } from "./shared/middlewares/error.handler.js";
 
 const app = express();
 
 app.disable("x-powered-by");
 
-app.use(morgan("dev"));
+app.use(pinoHttp({ logger }));
 app.use(express.json());
 
 app.get("/health", (_req, res) => {
