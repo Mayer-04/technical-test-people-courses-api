@@ -1,13 +1,13 @@
-export const HttpStatus = {
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  CONFLICT: 409,
-  INTERNAL_SERVER_ERROR: 500,
+const HttpStatus = {
+  badRequest: 400,
+  unauthorized: 401,
+  forbidden: 403,
+  notFound: 404,
+  conflict: 409,
+  internalServerError: 500,
 } as const;
 
-export class HttpError extends Error {
+class HttpError extends Error {
   constructor(
     public message: string,
     public statusCode: number,
@@ -18,38 +18,49 @@ export class HttpError extends Error {
   }
 }
 
-export class BadRequestError extends HttpError {
+class BadRequestError extends HttpError {
   constructor(message: string = "Petición incorrecta") {
-    super(message, HttpStatus.BAD_REQUEST);
+    super(message, HttpStatus.badRequest);
   }
 }
 
-export class UnauthorizedError extends HttpError {
+class UnauthorizedError extends HttpError {
   constructor(message: string = "No autorizado") {
-    super(message, HttpStatus.UNAUTHORIZED);
+    super(message, HttpStatus.unauthorized);
   }
 }
 
-export class ForbiddenError extends HttpError {
+class ForbiddenError extends HttpError {
   constructor(message: string = "Acceso prohibido") {
-    super(message, HttpStatus.FORBIDDEN);
+    super(message, HttpStatus.forbidden);
   }
 }
 
-export class NotFoundError extends HttpError {
+class NotFoundError extends HttpError {
   constructor(message: string = "Recurso no encontrado") {
-    super(message, HttpStatus.NOT_FOUND);
+    super(message, HttpStatus.notFound);
   }
 }
 
-export class ConflictError extends HttpError {
+class ConflictError extends HttpError {
   constructor(message: string = "Conflicto con el estado actual") {
-    super(message, HttpStatus.CONFLICT);
+    super(message, HttpStatus.conflict);
   }
 }
 
-export class InternalServerError extends HttpError {
+class InternalServerError extends HttpError {
   constructor(message: string = "Error interno del servidor") {
-    super(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    super(message, HttpStatus.internalServerError);
   }
 }
+
+export {
+  HttpStatus,
+  HttpError,
+  BadRequestError,
+  UnauthorizedError,
+  ForbiddenError,
+  NotFoundError,
+  ConflictError,
+  InternalServerError,
+};
