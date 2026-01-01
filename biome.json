@@ -21,6 +21,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn"
+      },
       "correctness": {
         "noUnusedVariables": "error",
         "noUnusedImports": "error"
@@ -28,11 +31,19 @@
       "style": {
         "noNamespace": "error",
         "useBlockStatements": "error",
-        "useTemplate": "error"
+        "useTemplate": "error",
+        "useNamingConvention": {
+          "level": "warn",
+          "options": {
+            "strictCase": false
+          }
+        },
+        "noDefaultExport": "warn"
       },
       "suspicious": {
         "noExplicitAny": "warn",
-        "noConsole": "warn"
+        "noConsole": "warn",
+        "noDoubleEquals": "error"
       }
     }
   },
@@ -46,6 +57,19 @@
       "semicolons": "always",
       "trailingCommas": "all",
       "quoteStyle": "double"
+    },
+    "globals": ["process", "console", "module", "require"]
+  },
+  "overrides": [
+    {
+      "includes": ["src/models/**/*.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": "off"
+          }
+        }
+      }
     }
-  }
+  ]
 }
