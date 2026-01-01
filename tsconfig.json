@@ -1,0 +1,57 @@
+{
+    "compilerOptions": {
+        // Versión de JavaScript generada
+        "target": "es2024",
+        // Sistema de módulos moderno para Node.js
+        "module": "NodeNext",
+        // Resolución de módulos compatible con ESM
+        "moduleResolution": "NodeNext",
+        // Carpeta de salida del código compilado
+        "outDir": "./dist",
+        // Carpeta raíz del código fuente
+        "rootDir": "./src",
+        // No genera archivos .map
+        "sourceMap": false,
+        // Elimina comentarios del JS final
+        "removeComments": true,
+        // Permite importar módulos CommonJS con default import
+        "esModuleInterop": true,
+        // Permite imports por defecto aunque no existan explícitamente
+        "allowSyntheticDefaultImports": true,
+        // Permite importar archivos JSON
+        "resolveJsonModule": true,
+        // Activa todas las validaciones estrictas
+        "strict": true,
+        // Prohíbe variables con tipo implícito any
+        "noImplicitAny": false,
+        // Obliga a manejar null y undefined explícitamente
+        "strictNullChecks": true,
+        // Verifica compatibilidad estricta de funciones
+        "strictFunctionTypes": true,
+        // Obliga a inicializar propiedades de clases
+        "strictPropertyInitialization": true,
+        // Error si hay variables no usadas
+        "noUnusedLocals": true,
+        // Error si hay parámetros no usados
+        "noUnusedParameters": true,
+        // Evita fallthrough en switch sin break
+        "noFallthroughCasesInSwitch": true,
+        // Ignora errores de tipos en dependencias
+        "skipLibCheck": true,
+        // Fuerza consistencia en mayúsculas/minúsculas de archivos
+        "forceConsistentCasingInFileNames": true,
+        // Incluye tipos globales de Node.js
+        "types": [
+            "node"
+        ]
+    },
+    // Archivos TypeScript incluidos en la compilación
+    "include": [
+        "src/**/*.ts"
+    ],
+    // Carpetas excluidas de la compilación
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
